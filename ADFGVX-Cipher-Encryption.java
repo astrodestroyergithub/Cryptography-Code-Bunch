@@ -82,7 +82,7 @@ public class MyProgram{
 	public static void main(String[] args) {
 		
 		String encpt;
-		System.out.print("Enter Ciphertext: ");
+		System.out.print("Enter Plaintext: ");
 		Scanner scanner = new Scanner(System.in);
 		encpt = scanner.nextLine();
 		String key;
