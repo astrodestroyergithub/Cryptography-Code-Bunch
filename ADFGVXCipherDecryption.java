@@ -6,7 +6,6 @@ public class ADFGVXCipherDecryption {
 
         char[] key1=key.toCharArray();
         char[] decpt1=decpt.toCharArray();
-        
         ArrayList<Character> pos2=new ArrayList<>();
         ArrayList<Integer> posKeyEle=new ArrayList<>();
 
