@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class MyProgram {
+public class BaconianCipher {
 	
 	static String encrypt(String pt) {
 		Dictionary baconian = new Hashtable();

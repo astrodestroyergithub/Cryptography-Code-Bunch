@@ -1,98 +1,72 @@
-#### Encryption is happening here 
------
-def polybiusEncrypt(s):
-encpt=
-""
-for
-char
-in s:
-row = 
-int
-((ord(
-char
-) 
--
-ord(
-'a'
-)) / 5) + 1
-col = ((ord(
-char
-) 
--
-ord(
-'a'
-)) % 5) + 1
-if
-char
-== 
-'k'
-:
-row = row 
--
-1
-col = 5 
--
-col + 1
-elif ord(
-char
-) >= ord(
-'j'
-):
-if
-col == 1 :
-col = 6
-row = row 
--
-1
-col = col 
--
-1
-r=str(row)
-c=str(col)
-encpt = encpt+r+c
-return
-encpt
+#include<iostream>
+#include<string.h>
+using namespace std;
 
-#### 
-Decryption is happening here 
------
-def polybiusDecrypt(s):
-s1 = list(s)
-decpt = 
-""
-for
-i in range(0,len(s),2):
-r = 
-int
-(s1[i])
-c = 
-int
-(s1[i+1])
-ch = chr(((r
--
-1)*5+c+96))
-if
-(ord(ch)
--
-96>=10): 
-ch = chr(((r
--
-1)*5+c+96+1))
-ch1 = 
-str(ch)
-decpt = decpt + ch1
-return
-decpt
-#### Driver code 
------
-pt = input(
-"Enter plaintext: "
-)
-encpt = polybiusEncrypt(pt)
-print(
-"Encrypted text: "
-,encpt)
-decpt = polybiusDecrypt(encpt)
-print(
-"Decrypted text: "
-,decpt)
+char table[5][5];
+
+string encrypt(string pt)
+{
+    string encpt="";
+    int l = pt.length();
+    char encpt1[l+1];
+    strcpy(encpt1,pt.c_str());
+    for(int i=0;i<l;i++)
+        for(int j=0;j<5;j++)
+            for(int k=0;k<5;k++)
+            {
+                if(encpt1[i]==table[j][k])
+                {
+                    char ch = j+48+1;
+                    string row(1,ch);
+                    encpt=encpt+row;
+                    ch = k+48+1;
+                    string col(1,ch);
+                    encpt=encpt+col;
+        }
+    }
+    return encpt;
+}
+
+string decrypt(string encpt)
+{
+    string decpt="";
+    int l = encpt.length();
+    char decpt1[l+1];
+    strcpy(decpt1,encpt.c_str());
+    for(int i=0;i<l;i=i+2)
+    {
+        int row, col;
+        row=decpt1[i];
+        row-=48;
+        col=decpt1[i+1];
+        col-=48;
+        string s(1,table[row-1][col-1]);
+        decpt=decpt+s;
+    }
+    return decpt;
+}
+
+int main()
+{
+    int num = 65, i=0;
+    while(num<=90)
+    {
+        if(num!=74)
+        {
+            int j = i/5;
+            char ch = num;
+            table[j][i%5] = ch;
+            i++;
+        }
+        num++;
+    }
+    string pt,encpt,decpt;
+
+    cout<<"Enter plaintext: ";
+    cin>>pt;
+    encpt = encrypt(pt);
+    cout<<"Encrypted text: "<<encpt;
+    decpt = decrypt(encpt);
+    cout<<"\nDecrypted text: "<<decpt;
+    return 0;
+}

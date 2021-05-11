@@ -16,7 +16,6 @@ TL[1][4]='K';
 BR[1][4]='K';
 for(int i=2;i<5;i++)
 for(int j=0;j<5;j++)
-
 {
 char ch = (i*5+j+66);
 TL[i][j]=ch;
@@ -33,9 +32,7 @@ for(int i=0;i<5;i++)
 for(int j=0;j<10;j++)
 {
 if(j>4){
-int k = j
--
-5;
+int k = j-5;
 string s(1,TR[i][k]);
 seq=seq+s;
 }
@@ -51,9 +48,7 @@ for(int j=0;j<10;j++)
 
 if(j>4)
 {
-int k = j
--
-5;
+int k = j-5;
 string s(1,BR[i][k]);
 seq=seq+s;
 }
@@ -140,7 +135,6 @@ decpt=decpt+s1+s2;
 return decpt;
 }
 int main()
-
 {
 string pt, encpt, decpt;
 cout<<"Enter plaintext: ";

@@ -1,94 +1,60 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
+public class ROT13Cipher{
 
-public class MyProgram {
-	
-	static String encrypt(String pt) {
-		Dictionary baconian = new Hashtable();
-		baconian.put('A', "aaaaa");
-		baconian.put('B', "aaaab");
-		baconian.put('C', "aaaba");
-		baconian.put('D', "aaabb");
-		baconian.put('E', "aabaa");
-		baconian.put('F', "aabab");
-		baconian.put('G', "aabba");
-		baconian.put('H', "aabbb");
-		baconian.put('I', "abaaa");
-		baconian.put('J', "abaab");
-		baconian.put('K', "ababa");
-		baconian.put('L', "ababb");
-		baconian.put('M', "abbaa");
-		baconian.put('N', "abbab");
-		baconian.put('O', "abbba");
-		baconian.put('P', "abbbb");
-		baconian.put('Q', "baaaa");
-		baconian.put('R', "baaab");
-		baconian.put('S', "baaba");
-		baconian.put('T', "baabb");
-		baconian.put('U', "babaa");
-		baconian.put('V', "babab");
-		baconian.put('W', "babba");
-		baconian.put('X', "babbb");
-		baconian.put('Y', "bbaaa");
-		baconian.put('Z', "bbaab");
-		
-		char[] encpt1 = pt.toCharArray();
-		int i;
-		String encpt2 = new String("");
-		for(i=0;i<pt.length();i++) {
-			encpt2 = encpt2 + baconian.get(encpt1[i]);
+	static String encrypt(String pt){
+		int i,n;
+		char ch;
+		char[] encpt1=pt.toCharArray();
+		for(i=0;i<pt.length();i++){
+			n=encpt1[i];
+			if(n>=78){
+				n+=13;
+				n=n-90+64;
+				ch=(char)n;
+				encpt1[i]=ch;
+			}
+			else{
+				n+=13;
+				ch=(char)n;
+				encpt1[i]=ch;
+			}
 		}
-		
+		String encpt2=new String(encpt1);
 		return encpt2;
 	}
-	
-	static String decrypt(String encpt) {
-		Dictionary baconian = new Hashtable();
-		baconian.put("aaaaa","A");
-		baconian.put("aaaab","B");
-		baconian.put("aaaba","C");
-		baconian.put("aaabb","D");
-		baconian.put("aabaa","E");
-		baconian.put("aabab","F");
-		baconian.put("aabba","G");
-		baconian.put("aabbb","H");
-		baconian.put("abaaa","I");
-		baconian.put("abaab","J");
-		baconian.put("ababa","K");
-		baconian.put("ababb","L");
-		baconian.put("abbaa","M");
-		baconian.put("abbab","N");
-		baconian.put("abbba","O");
-		baconian.put("abbbb","P");
-		baconian.put("baaaa","Q");
-		baconian.put("baaab","R");
-		baconian.put("baaba","S");
-		baconian.put("baabb","T");
-		baconian.put("babaa","U");
-		baconian.put("babab","V");
-		baconian.put("babba","W");
-		baconian.put("babbb","X");
-		baconian.put("bbaaa","Y");
-		baconian.put("bbaab","Z");
-		
-		int i;
-		String decpt1 = new String("");
-		for(i=0;i<encpt.length();i=i+5) {
-			decpt1 = decpt1 + baconian.get(encpt.substring(i,i+5));
+
+	static String decrypt(String encpt){
+		int i,n;
+		char ch;
+		char[] decpt1=encpt.toCharArray();
+		for(i=0;i<encpt.length();i++){
+			n=decpt1[i];
+			if(n<=77){
+				n-=13;
+				n=91-(65-n);
+				ch=(char)n;
+				decpt1[i]=ch;
+			}
+			else{
+				n-=13;
+				ch=(char)n;
+				decpt1[i]=ch;
+			}
 		}
-		
-		return decpt1;
+		String decpt2=new String(decpt1);
+		return decpt2;
 	}
-	
-	public static void main(String[] args) {
+
+	public static void main(String[] args){
 		String pt,encpt,decpt;
 		System.out.println("Enter plaintext: ");
-		Scanner scanner = new Scanner(System.in);
-		pt = scanner.nextLine();
-		encpt = encrypt(pt);
-		System.out.println("Encrypted text: " + encpt);
-		decpt = decrypt(encpt);
-		System.out.println("Decrypted text: " + decpt);
+		Scanner scanner=new Scanner(System.in);
+		pt=scanner.nextLine();
+		encpt=encrypt(pt);
+		System.out.println("Encrypted text: ");
+		System.out.println(encpt);
+		decpt=decrypt(encpt);
+		System.out.println("Decrypted text: ");
+		System.out.println(decpt);
 	}
 }
-
