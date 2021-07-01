@@ -1,4 +1,3 @@
-
 def encrypt(pt):
     baconian = {
         'A': "aaaaa",
