@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class PolybiusSquareCipher{
@@ -63,6 +62,3 @@ public class PolybiusSquareCipher{
 	}
 	
 }
-
-
-
