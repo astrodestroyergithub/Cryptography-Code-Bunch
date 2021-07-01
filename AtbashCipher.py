@@ -1,4 +1,3 @@
-
 def encrypt(pt):
     encpt=list(pt)
     for i in range(len(pt)):
@@ -22,5 +21,3 @@ encpt=encrypt(pt)
 print("Encrypted text: ",encpt)
 decpt=decrypt(encpt)
 print("Decrypted text: ",decpt)
-
-
