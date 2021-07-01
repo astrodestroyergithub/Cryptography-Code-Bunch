@@ -1,4 +1,3 @@
-
 def encrypt(pt):
     encpt1=list(pt)
     for i in range(len(pt)):
