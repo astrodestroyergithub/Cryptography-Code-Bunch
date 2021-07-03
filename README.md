@@ -1,4 +1,4 @@
-# CryptographyCodeBunch
+# Cryptography Code Bunch
 ## Code Bunch contains the following cryptographic programs
 <br> 1. Caesar Cipher (C Implementation)
 <br> 2. Atbash Cipher (Java Implementation)
